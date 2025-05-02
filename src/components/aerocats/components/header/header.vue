@@ -43,6 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import AerocatLogo from '@assets/aerocats.png';
+import AerocatLogo from '@assets/images/aerocats.png';
 import { RouteNames as AerocatRouteNames } from '../../aerocats.routes';
 </script>
