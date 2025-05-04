@@ -4,6 +4,8 @@ import { createWebHistory, createRouter } from "vue-router";
 import PrimeVue from "primevue/config";
 import Aura from "@primeuix/themes/aura";
 import { routes } from "./app.routes";
+import './main.scss';
+import 'primeicons/primeicons.css';
 
 const router = createRouter({
   history: createWebHistory(),

@@ -32,6 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import SpeciesCreator from '@assets/images/creator.avif';
+import SpeciesCreator from '@assets/images/creators/presto.png';
 import Card from 'primevue/card';
 </script>

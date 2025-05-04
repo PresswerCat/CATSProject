@@ -37,6 +37,13 @@
             </router-link>
           </li>
         </ul>
+
+        <!-- <div class="logo">
+          <router-link to="/landcats/">
+            <img class="logo-img" :src="LandcatLogo" />
+            <span>To LANDCATS</span>
+          </router-link>
+        </div> -->
       </nav>
     </div>
   </header>
@@ -44,5 +51,6 @@
 
 <script setup lang="ts">
 import AerocatLogo from '@assets/images/aerocats.png';
+import LandcatLogo from '@assets/images/landcats.png';
 import { RouteNames as AerocatRouteNames } from '../../aerocats.routes';
 </script>

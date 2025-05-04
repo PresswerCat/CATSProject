@@ -1,0 +1,60 @@
+@use "@assets/mixins.scss" as *;
+@use '@assets/variables.scss' as *;
+
+.aerocat-card {
+    width: pxToRem(240);
+    overflow: hidden;
+    cursor: pointer;
+
+    .aerocat-card-img {
+        width: 100%;
+        height: auto;
+    }
+
+    :deep(.p-card-body) {
+        height: 100%;
+
+        .p-card-content {
+            height: 100%;
+        }
+    }
+
+    .aerocat-content-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        gap: pxToRem(8);
+
+        .aerocat-content {
+            display: flex;
+            flex-direction: column;
+            gap: pxToRem(8);
+            .aerocat-model {
+                font-size: pxToRem(20);
+            }
+
+            .additional-info {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                font-size: pxToRem(14);
+            }
+        }
+
+        .creator {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: pxToRem(8);
+            padding-top: pxToRem(8);
+            
+            .creator-img {
+                width: pxToRem(24);
+                height: pxToRem(24);
+                border-radius: pxToRem(6);
+            }
+        }
+    }
+}

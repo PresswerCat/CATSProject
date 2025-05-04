@@ -1,0 +1,12 @@
+{
+    "creators": [
+        {
+            "name": "Presto",
+            "socials": {
+                "twitter": "https://twitter.com/handle",
+                "bluesky": "https://bsky.app/profile/handle"
+            },
+            "profileImage": "/assets/images/creators/presto.png"
+        }
+    ]
+}

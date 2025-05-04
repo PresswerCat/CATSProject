@@ -2,5 +2,28 @@
 @use '@assets/variables.scss' as *;
 
 .characters-container {
-    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .characters-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: pxToRem(32);
+
+        .characters-header-title {
+            font-size: pxToRem(24);
+        }
+
+        :deep(.p-inputtext:enabled:focus) {
+            border-color: $aerocat-blue;
+        }
+    }
+
+    .characters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: pxToRem(20);
+    }
 }

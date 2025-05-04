@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'ZTGatha';
+    src: url('/src/assets/fonts/ZTGatha-SemiBold.ttf') format('trueType');
+}
+
+body {
+    font-family: 'ZTGatha';
+    max-width: 1024px;
+    margin: auto;
+}
