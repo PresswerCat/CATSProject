@@ -53,26 +53,30 @@
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
-import aerocatJson from '@assets/aerocats.json';
 import CharacterCard from './components/character-card/character-card.vue';
-import { Aerocat } from '../../models/aerocat.model';
+import { Aerocat } from '@models/aerocat.model';
 import Dialog from 'primevue/dialog';
+import { useCatsStore } from '@/store';
+import { storeToRefs } from 'pinia';
 
-let aerocats = $ref<Aerocat[]>(aerocatJson.aerocats);
 let value = $ref<string>('');
-
 let showModal = $ref(false);
 let selectedAerocat = $ref<Aerocat>(null);
+
+const cats$ = useCatsStore();
+const { aerocats } = $(storeToRefs(cats$));
 
 const filteredAerocats = $computed(() => {
     if (!value) {
         return aerocats;
     }
 
+    const searchTerm = value.toLowerCase().trim();
+
     return aerocats.filter((aerocat) => 
-        aerocat.name.toLowerCase().includes(value.toLowerCase()) ||
-        aerocat.model.toLowerCase().includes(value.toLowerCase()) || 
-        aerocat.creator.toLowerCase().includes(value.toLowerCase())
+        aerocat.name.toLowerCase().includes(searchTerm) ||
+        aerocat.model.toLowerCase().includes(searchTerm) || 
+        aerocat.creator.toLowerCase().includes(searchTerm)
     );
 });
 

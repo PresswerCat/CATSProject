@@ -10,6 +10,7 @@ export enum RouteNames {
 }
 
 const RoutePathNames = {
+    [RouteNames.Home]: '',
     [RouteNames.AboutSpecies]: 'about',
     [RouteNames.SpeciesSheet]: 'species-sheet',
     [RouteNames.Assets]: 'assets',
@@ -18,6 +19,11 @@ const RoutePathNames = {
 }
 
 export const routes: RouteRecordRaw[] = [
+    {
+        path: RoutePathNames[RouteNames.Home],
+        name: RouteNames.Home,
+        component: () => import('./components/home/home.vue')
+    } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.AboutSpecies],
         name: RouteNames.AboutSpecies,

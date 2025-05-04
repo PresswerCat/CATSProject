@@ -4,6 +4,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import PrimeVue from "primevue/config";
 import Aura from "@primeuix/themes/aura";
 import { routes } from "./app.routes";
+import { createPinia } from 'pinia';
 import './main.scss';
 import 'primeicons/primeicons.css';
 
@@ -12,8 +13,11 @@ const router = createRouter({
   routes,
 });
 
+const pinia = createPinia();
+
 createApp(App)
   .use(router)
+  .use(pinia)
   .use(PrimeVue, {
     // Default theme configuration
     theme: {

@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import Card from 'primevue/card';
-import { Aerocat } from '../../../../models/aerocat.model';
+import { Aerocat } from '@models/aerocat.model';
 
 const { aerocat } = defineProps<{
     aerocat?: Aerocat;

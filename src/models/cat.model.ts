@@ -1,4 +1,4 @@
-export interface Aerocat {
+export interface Cat {
     creator?: string;
     name?: string;
     model?: string;
