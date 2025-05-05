@@ -5,17 +5,28 @@
             "name": "Patriot Panther",
             "model": "F9F-5",
             "description": "Description text goes here. I am very creative and this should overflow now which is good for testing.",
-            "thumbnailPath": "/assets/images/aerocats/patriot_panther.png",
-            "additionalImages": [
+            "referenceSheetsPath": [],
+            "galleryImagePaths": [
+                "/src/assets/images/aerocats/patriot_panther/gallery/1.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/2.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/3.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/4.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/5.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/6.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/7.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/8.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/9.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/10.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/11.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/12.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/13.png",
+                "/src/assets/images/aerocats/patriot_panther/gallery/14.png"
             ]
         },
         {
             "creator": "Presto",
             "name": "Coo the Cougar",
-            "model": "F9F-7",
-            "thumbnailPath": "/assets/images/aerocats/coo_the_cougar.png",
-            "additionalImages": [
-            ]
+            "model": "F9F-7"
         }
     ]
 }

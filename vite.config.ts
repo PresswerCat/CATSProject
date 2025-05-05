@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueReactivityTransform from '@vue-macros/reactivity-transform/vite';
+import vueDefineModels from '@vue-macros/define-models/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,7 +18,8 @@ export default defineConfig({
         }
       }
     }),
-    vueReactivityTransform()
+    vueReactivityTransform(),
+    vueDefineModels()
   ],
   resolve: {
     alias: {

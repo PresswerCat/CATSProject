@@ -19,34 +19,10 @@
             </CharacterCard>
         </div>
     </div>
-    <Dialog 
-        v-model:visible="showModal"
-        :draggable="false"
-        :dismissableMask="true"
-        modal>
-        <template #header>
-            <!-- <img class="creator-img" alt="creator profile image" :src="creatorAsset"/> -->
-            <span class="creator-name"> {{ selectedAerocat?.creator }} </span>
-        </template>
-        <div class="modal-content">
-            <div class="aerocat-content">
-                <div class="aerocat-model">
-                    {{ selectedAerocat?.model }}
-                </div>
-                <div class="aerocat-name">
-                    {{ selectedAerocat?.name }}
-                </div>
-                <span
-                    v-if="selectedAerocat?.description"
-                    class="additional-info">
-                    {{ selectedAerocat?.description }}
-                </span>
-            </div>
-            <div class="aerocat-gallery">
-
-            </div>
-        </div>
-    </Dialog>
+    <AerocatModal
+        v-if="showModal"
+        :aerocat="selectedAerocat">
+    </AerocatModal>
 </template>
 
 <script setup lang="ts">
@@ -55,7 +31,7 @@ import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
 import CharacterCard from './components/character-card/character-card.vue';
 import { Aerocat } from '@models/aerocat.model';
-import Dialog from 'primevue/dialog';
+import AerocatModal from './components/character-modal/character-modal.vue';
 import { useCatsStore } from '@/store';
 import { storeToRefs } from 'pinia';
 

@@ -1,0 +1,30 @@
+@use "@assets/mixins.scss" as *;
+@use '@assets/variables.scss' as *;
+
+$thumbnail-size: pxToRem(82);
+
+.modal-content {
+    display: flex;
+    flex-direction: rows;
+
+    .aerocat-content {
+        .aerocat-primary-img {
+            width: pxToRem(240);
+            height: auto;
+
+        }
+    }
+
+    .aerocat-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: pxToRem(12);
+
+        :deep(.p-image) {
+            .aerocat-gallery-image {
+                width: $thumbnail-size;
+                height: $thumbnail-size;
+            }
+        }
+    }
+}

@@ -22,6 +22,7 @@
       "node",
       "vue",
       "@vue-macros/reactivity-transform/macros-global",
+      "@vue-macros/define-macros/macros-global",
       "vite/client",
       "primevue"
     ],

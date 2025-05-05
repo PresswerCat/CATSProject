@@ -12,6 +12,9 @@ export const useCatsStore = defineStore("cats", {
     landcats: null,
   }),
   getters: {
+    isMobile: (state) => {
+        return window.innerWidth <= 600;
+    },
     creatorFromCat: (state) => {
       return (cat: Cat) => {
         state.creators?.find((creator) => creator.name === cat.creator);

@@ -2,13 +2,23 @@
 @use '@assets/variables.scss' as *;
 
 .aerocat-card {
-    width: pxToRem(240);
+    width: pxToRem(240);;
     overflow: hidden;
     cursor: pointer;
 
+    @media screen and (max-width: $breakpoint-xs) {
+        width: 100%;
+    }
+
     .aerocat-card-img {
         width: 100%;
-        height: auto;
+        height: pxToRem(200);
+        object-fit: cover;
+        object-position: top;
+
+        @media screen and (max-width: $breakpoint-xs) {
+            height: pxToRem(240);
+        }
     }
 
     :deep(.p-card-body) {
@@ -32,14 +42,6 @@
             gap: pxToRem(8);
             .aerocat-model {
                 font-size: pxToRem(20);
-            }
-
-            .additional-info {
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                font-size: pxToRem(14);
             }
         }
 

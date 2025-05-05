@@ -14,11 +14,6 @@
                     <div class="aerocat-name">
                         {{ aerocat?.name }}
                     </div>
-                    <span
-                        v-if="aerocat?.description"
-                        class="additional-info">
-                        {{ aerocat?.description }}
-                    </span>
                 </div>
                 <div
                     v-if="aerocat?.creator"
@@ -43,7 +38,11 @@ const emit = defineEmits<{
     (e: 'aerocat-selected', aerocat: Aerocat): void;
 }>();
 
-const thumbnailAsset = $computed(() => new URL(`/src/assets/images/aerocats/${aerocat.name.toLowerCase().replaceAll(' ', '_')}.png`, import.meta.url).href);
+const thumbnailAsset = $computed(() => {
+    const aerocatName = aerocat.name.toLowerCase().replaceAll(' ', '_');
+    return new URL(`/src/assets/images/aerocats/${aerocatName}/gallery/1.png`, import.meta.url).href;
+});
+
 const creatorAsset = $computed(() => {
     if (!aerocat?.creator) 
         return null;

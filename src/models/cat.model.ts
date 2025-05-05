@@ -3,6 +3,6 @@ export interface Cat {
     name?: string;
     model?: string;
     description?: string;
-    thumbnailPath?: string;
-    additionalImagesPaths?: string[];
+    referenceSheetsPath?: string[];
+    galleryImagePaths?: string[];
 }

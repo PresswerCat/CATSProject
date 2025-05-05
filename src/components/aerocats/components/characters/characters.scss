@@ -19,11 +19,23 @@
         :deep(.p-inputtext:enabled:focus) {
             border-color: $aerocat-blue;
         }
+
+        @media screen and (max-width: $breakpoint-xs) {
+            position: sticky;
+            top: 0;
+            background-color: $background-color;
+            padding: pxToRem(16) pxToRem(32);
+        }
     }
 
     .characters {
         display: flex;
         flex-wrap: wrap;
         gap: pxToRem(20);
+
+        @media screen and (max-width: $breakpoint-xs) {
+            padding: 0 pxToRem(32);
+            padding-bottom: pxToRem(32);
+        }
     }
 }
