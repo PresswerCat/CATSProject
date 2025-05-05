@@ -21,6 +21,7 @@ export default defineConfig({
     vueReactivityTransform(),
     vueDefineModels()
   ],
+  base: '/CatsProject/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

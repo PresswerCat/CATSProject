@@ -26,7 +26,10 @@
         {
             "creator": "Presto",
             "name": "Coo the Cougar",
-            "model": "F9F-7"
+            "model": "F9F-7",
+            "galleryImagePaths": [
+                "/src/assets/images/aerocats/coo_the_cougar/gallery/1.png"
+            ]
         }
     ]
 }

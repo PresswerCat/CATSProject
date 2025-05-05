@@ -12,7 +12,7 @@ export const useCatsStore = defineStore("cats", {
     landcats: null,
   }),
   getters: {
-    isMobile: (state) => {
+    isMobile: () => {
         return window.innerWidth <= 600;
     },
     creatorFromCat: (state) => {

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@primeuix/themes": "^1.0.3",
+    "@types/webpack": "^5.28.5",
     "@vue-macros/define-models": "^1.3.5",
     "@vue-macros/reactivity-transform": "^1.1.4",
     "pinia": "^3.0.2",
@@ -19,10 +20,11 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@types/node": "^22.15.3",
     "@vitejs/plugin-vue": "^5.2.2",
     "@vue/tsconfig": "^0.7.0",
     "sass": "^1.83.1",
-    "typescript": "~5.7.2",
+    "typescript": "~5.8.3",
     "vite": "^6.3.1",
     "vue-tsc": "^2.2.8"
   }

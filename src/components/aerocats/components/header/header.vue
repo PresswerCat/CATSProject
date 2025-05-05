@@ -85,7 +85,6 @@
 
 <script setup lang="ts">
 import AerocatLogo from '@assets/images/aerocats.png';
-import LandcatLogo from '@assets/images/landcats.png';
 import { RouteNames as AerocatRouteNames } from '../../aerocats.routes';
 import Drawer from 'primevue/drawer';
 import Button from 'primevue/button';
