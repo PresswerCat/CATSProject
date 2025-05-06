@@ -1,7 +1,8 @@
 <style lang="scss" scoped src="./character-modal.scss"></style>
 
 <template>
-    <Dialog 
+    <Dialog
+        class="character-modal-container"
         v-model:visible="visible"
         :draggable="false"
         :dismissableMask="true"
@@ -12,7 +13,22 @@
         </template>
         <div class="modal-content">
             <div class="aerocat-content">
+                <template v-if="aerocat.referenceSheetsPath.length">
+                    <Galleria
+                        :value="aerocat.referenceSheetsPath"
+                        showItemNavigators
+                        showItemNavigatorsOnHover
+                        circular>
+                        <template #item="slotProps">
+                            <img class="aerocat-ref-img" :src="slotProps.item" :alt="slotProps.item.alt" />
+                        </template>
+                        <template #thumbnail="slotProps">
+                            <img class="aerocat-ref-thumbnail" :src="slotProps.item" :alt="slotProps.item.alt" />
+                        </template>
+                    </Galleria>
+                </template>                
                 <img 
+                    v-else
                     class="aerocat-primary-img"
                     :src="galleryImageHrefs[0]" />
                 <div class="aerocat-model">
@@ -45,6 +61,7 @@ import { Aerocat } from '@models/aerocat.model';
 import { onMounted } from 'vue';
 import Dialog from 'primevue/dialog';
 import Image from 'primevue/image';
+import Galleria from 'primevue/galleria';
 
 const { aerocat } = defineProps<{
     aerocat?: Aerocat;
@@ -54,7 +71,7 @@ let visible = $ref(true);
 let galleryImageHrefs = $ref([]);
 
 onMounted(async () => {
-    aerocat?.galleryImagePaths.forEach((imagePath) => {
+    aerocat?.galleryImagePaths?.forEach((imagePath) => {
         const imageHref = new URL(imagePath, import.meta.url).href;
         galleryImageHrefs.push(imageHref);
     });
