@@ -5,6 +5,11 @@ import aerocatJson from "@assets/aerocats.json";
 import landcatJson from "@assets/landcats.json";
 import { Cat } from "@/models/cat.model";
 import { GroupedAssets } from "@/models/grouped-assets.model";
+import { UrlHelper } from "@/helper/url.helper";
+
+interface ModuleImportInterface {
+  default: Object;
+}
 
 export const useCatsStore = defineStore("cats", {
   state: (): CatsState => ({
@@ -28,19 +33,23 @@ export const useCatsStore = defineStore("cats", {
       this.aerocats = aerocatJson.aerocats;
       this.landcats = landcatJson.landcats;
 
-      const aerocatImages = Object.keys(import.meta.glob('/src/assets/images/aerocats/**/*'));
-      const groupedAssetUrls = this.groupAssetUrls(aerocatImages);
-      console.log(groupedAssetUrls);
+      const aerocatGlob = import.meta.glob<ModuleImportInterface>('/src/assets/images/aerocats/**/*', { eager: true });
+      const groupedAssetUrls = this.groupAssetUrls(aerocatGlob);
       this.aerocats?.forEach(a => {
         const formattedName = a.name.toLowerCase().replaceAll(" ", "_");
         a.galleryImagePaths = groupedAssetUrls[formattedName]?.galleryImagePaths;
         a.referenceSheetsPath = groupedAssetUrls[formattedName]?.referenceSheetImagePaths;
       });
     },
-    groupAssetUrls(urls: string[]): Record<string, GroupedAssets> {
+    groupAssetUrls(globRecord: Record<string, ModuleImportInterface>): Record<string, GroupedAssets> {
       const initialGroupedUrls: Record<string, string[]> = {};
-    
-      for (const url of urls) {
+      const urlHashRecord: Record<string, string> = {};
+
+      for (const [assetPath, assetHashedPath] of Object.entries(globRecord)) {
+        urlHashRecord[assetPath] = assetHashedPath.default as string;
+      }
+
+      for (const url of Object.keys(globRecord)) {
         const parts = url.split('/');
     
         // We need at least 3 parts from the right for the grouping directory
@@ -73,15 +82,15 @@ export const useCatsStore = defineStore("cats", {
               
               if (folderKey === 'gallery') {
                 if (groupedAssetsByName[groupKey].galleryImagePaths) {
-                  groupedAssetsByName[groupKey].galleryImagePaths.push(url);
+                  groupedAssetsByName[groupKey].galleryImagePaths.push(urlHashRecord[url]);
                 } else {
-                  groupedAssetsByName[groupKey].galleryImagePaths = [url];
+                  groupedAssetsByName[groupKey].galleryImagePaths = [urlHashRecord[url]];
                 }
               } else if (folderKey === 'reference_sheets') {
                 if (groupedAssetsByName[groupKey].referenceSheetImagePaths) {
-                  groupedAssetsByName[groupKey].referenceSheetImagePaths.push(url);
+                  groupedAssetsByName[groupKey].referenceSheetImagePaths.push(urlHashRecord[url]);
                 } else {
-                  groupedAssetsByName[groupKey].referenceSheetImagePaths = [url];
+                  groupedAssetsByName[groupKey].referenceSheetImagePaths = [urlHashRecord[url]];
                 }
               }
           }
@@ -115,6 +124,6 @@ export const useCatsStore = defineStore("cats", {
       }
     
       return groupedAssetsByName;
-    }
+    },
   },
 });

@@ -13,7 +13,7 @@
         </template>
         <div class="modal-content">
             <div class="aerocat-content">
-                <template v-if="aerocat.referenceSheetsPath.length">
+                <template v-if="aerocat.referenceSheetsPath?.length">
                     <Galleria
                         :value="aerocat.referenceSheetsPath"
                         showItemNavigators

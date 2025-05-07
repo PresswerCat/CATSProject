@@ -1,0 +1,35 @@
+@use "@assets/mixins.scss" as *;
+@use '@assets/variables.scss' as *;
+
+.homepage-container {
+    .homepage-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .homepage-header {
+
+    }
+
+    .homepage-banner {
+        width: 100%;
+        border-radius: pxToRem(6);
+    }
+
+    .contacts { 
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: pxToRem(8);
+
+        .discord-contacts {
+            display: flex;
+            flex-direction: column;
+
+            .discord-contact {
+                display: flex;
+                gap: pxToRem(4);
+            }
+        }
+    }
+}

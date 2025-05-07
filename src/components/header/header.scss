@@ -65,6 +65,11 @@
     .nav-links-container {
       display: flex;
       flex-direction: row;
+
+      :deep(.p-menubar) {
+        border: none;
+        background: none;
+      }
     }
   }
 }
