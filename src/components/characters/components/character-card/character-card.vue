@@ -1,25 +1,25 @@
 <style lang="scss" scoped src="./character-card.scss"></style>
 
 <template>
-    <Card class="aerocat-card" @click="onAerocatClicked">
+    <Card class="cat-card" @click="onAerocatClicked">
         <template #header>
-            <img class="aerocat-card-img" alt="aerocat profile image" :src="thumbnailAsset"/>
+            <img class="cat-card-img" alt="aerocat profile image" :src="cat.galleryImagePaths[0]"/>
         </template>
         <template #content>
-            <div class="aerocat-content-container">
-                <div class="aerocat-content">
-                    <div class="aerocat-model">
-                        {{ aerocat?.model }}
+            <div class="cat-content-container">
+                <div class="cat-content">
+                    <div class="cat-model">
+                        {{ cat?.model }}
                     </div>
-                    <div class="aerocat-name">
-                        {{ aerocat?.name }}
+                    <div class="cat-name">
+                        {{ cat?.name }}
                     </div>
                 </div>
                 <div
-                    v-if="aerocat?.creator"
+                    v-if="cat?.creator"
                     class="creator">
                     <img class="creator-img" alt="creator profile image" :src="creatorAsset"/>
-                    <span class="creator-name"> {{ aerocat?.creator }} </span>
+                    <span class="creator-name"> {{ cat?.creator }} </span>
                 </div>
             </div>
         </template>
@@ -28,29 +28,24 @@
 
 <script setup lang="ts">
 import Card from 'primevue/card';
-import { Aerocat } from '@models/aerocat.model';
+import { Cat } from '@/models/cat.model';
 
-const { aerocat } = defineProps<{
-    aerocat?: Aerocat;
+const { cat } = defineProps<{
+    cat?: Cat;
 }>();
 
 const emit = defineEmits<{
-    (e: 'aerocat-selected', aerocat: Aerocat): void;
+    (e: 'cat-selected', cat: Cat): void;
 }>();
 
-const thumbnailAsset = $computed(() => {
-    const aerocatName = aerocat.name.toLowerCase().replaceAll(' ', '_');
-    return new URL(`/src/assets/images/aerocats/${aerocatName}/gallery/1.png`, import.meta.url).href;
-});
-
 const creatorAsset = $computed(() => {
-    if (!aerocat?.creator) 
+    if (!cat?.creator) 
         return null;
 
-    return new URL(`/src/assets/images/creators/${aerocat.creator.toLowerCase().replaceAll(' ', '_')}.png`, import.meta.url).href;
+    return new URL(`/src/assets/images/creators/${cat.creator.toLowerCase().replaceAll(' ', '_')}.png`, import.meta.url).href;
 });
 
 function onAerocatClicked() {
-    emit('aerocat-selected', aerocat);
+    emit('cat-selected', cat);
 }
 </script>

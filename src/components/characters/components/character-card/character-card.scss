@@ -1,7 +1,7 @@
 @use "@assets/mixins.scss" as *;
 @use '@assets/variables.scss' as *;
 
-.aerocat-card {
+.cat-card {
     width: pxToRem(240);;
     overflow: hidden;
     cursor: pointer;
@@ -10,7 +10,7 @@
         width: 100%;
     }
 
-    .aerocat-card-img {
+    .cat-card-img {
         width: 100%;
         height: pxToRem(200);
         object-fit: cover;
@@ -29,18 +29,18 @@
         }
     }
 
-    .aerocat-content-container {
+    .cat-content-container {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
         gap: pxToRem(8);
 
-        .aerocat-content {
+        .cat-content {
             display: flex;
             flex-direction: column;
             gap: pxToRem(8);
-            .aerocat-model {
+            .cat-model {
                 font-size: pxToRem(20);
             }
         }

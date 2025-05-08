@@ -1,5 +1,9 @@
 {
     "landcats": [
-        
+        {
+            "creator": "Presto",
+            "name": "Shell the Sheridan",
+            "model": "M551 Sheridan"
+        }
     ]
 }

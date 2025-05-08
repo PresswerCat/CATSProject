@@ -3,9 +3,8 @@ import { CatsState } from "./state";
 import creatorJson from "@assets/creators.json";
 import aerocatJson from "@assets/aerocats.json";
 import landcatJson from "@assets/landcats.json";
-import { Cat } from "@/models/cat.model";
 import { GroupedAssets } from "@/models/grouped-assets.model";
-import { UrlHelper } from "@/helper/url.helper";
+import { CatType } from "@/models/cat-type.enum";
 
 interface ModuleImportInterface {
   default: Object;
@@ -20,12 +19,7 @@ export const useCatsStore = defineStore("cats", {
   getters: {
     isMobile: () => {
         return window.innerWidth <= 600;
-    },
-    creatorFromCat: (state) => {
-      return (cat: Cat) => {
-        state.creators?.find((creator) => creator.name === cat.creator);
-      };
-    },
+    }
   },
   actions: {
     initialize() {
@@ -34,11 +28,21 @@ export const useCatsStore = defineStore("cats", {
       this.landcats = landcatJson.landcats;
 
       const aerocatGlob = import.meta.glob<ModuleImportInterface>('/src/assets/images/aerocats/**/*', { eager: true });
-      const groupedAssetUrls = this.groupAssetUrls(aerocatGlob);
+      const groupedAerocatAssetUrls = this.groupAssetUrls(aerocatGlob);
       this.aerocats?.forEach(a => {
         const formattedName = a.name.toLowerCase().replaceAll(" ", "_");
-        a.galleryImagePaths = groupedAssetUrls[formattedName]?.galleryImagePaths;
-        a.referenceSheetsPath = groupedAssetUrls[formattedName]?.referenceSheetImagePaths;
+        a.type = CatType.Aerocat;
+        a.galleryImagePaths = groupedAerocatAssetUrls[formattedName]?.galleryImagePaths;
+        a.referenceSheetsPath = groupedAerocatAssetUrls[formattedName]?.referenceSheetImagePaths;
+      });
+
+      const landcatGlob = import.meta.glob<ModuleImportInterface>('/src/assets/images/landcats/**/*', { eager: true});
+      const groupedLandcatAssetUrls = this.groupAssetUrls(landcatGlob);
+      this.landcats?.forEach(l => {
+        const formattedName = l.name.toLowerCase().replaceAll(" ", "_");
+        l.type = CatType.Landcat;
+        l.galleryImagePaths = groupedLandcatAssetUrls[formattedName]?.galleryImagePaths;
+        l.referenceSheetsPath = groupedLandcatAssetUrls[formattedName]?.referenceSheetImagePaths;
       });
     },
     groupAssetUrls(globRecord: Record<string, ModuleImportInterface>): Record<string, GroupedAssets> {
