@@ -1,0 +1,95 @@
+@use "@assets/mixins.scss" as *;
+@use "@assets/variables.scss" as *;
+
+.embla {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  .embla__viewport {
+    overflow: hidden;
+
+    .embla__container {
+      display: flex;
+      gap: pxToRem(8);
+
+      .embla__slide {
+        display: flex;
+        justify-content: center;
+        flex: 0 0 100%;
+
+        .p-image {
+          :deep(.cat-ref-img) {
+            width: 100%;
+            height: auto;
+            height: pxToRem(343);
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+
+  .embla__controls {
+    width: 100%;
+
+    .embla__buttons {
+      position: absolute;
+      top: 43%;
+      width: 100%;
+
+      .embla__button {
+        background: white;
+        opacity: 0.7;
+        border: none;
+        border-radius: 100%;
+        cursor: pointer;
+        width: pxToRem(40);
+        height: pxToRem(40);
+        position: absolute;
+
+        i {
+          color: black;
+        }
+
+        &.embla__button--next {
+          right: pxToRem(4);
+        }
+
+        &.embla__button--prev {
+          left: pxToRem(4);
+        }
+      }
+    }
+
+    .embla__dots {
+      display: flex;
+      justify-content: center;
+      column-gap: pxToRem(8);
+
+      .embla__dot {
+        width: pxToRem(8);
+        height: pxToRem(8);
+        border-radius: 50%;
+        border: none;
+        margin-top: pxToRem(8);
+        padding: 0;
+        cursor: pointer;
+
+        &.embla__dot--selected {
+            background-color: white;
+        }
+      }
+    }
+  }
+
+  img {
+    border-radius: pxToRem(6);
+  }
+
+  .cat-ref-thumbnail {
+    width: pxToRem(80);
+    height: pxToRem(80);
+    object-fit: contain;
+  }
+}

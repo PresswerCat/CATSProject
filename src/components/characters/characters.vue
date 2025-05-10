@@ -21,7 +21,8 @@
     </div>
     <CatModal
         v-if="showModal"
-        :cat="selectedCat">
+        :cat="selectedCat"
+        @change="onModalClosed">
     </CatModal>
 </template>
 
@@ -66,6 +67,10 @@ const filteredCats = $computed(() => {
 function onCatClicked(cat: Cat) {
     selectedCat = cat;
     showModal = true;
+}
+
+function onModalClosed() {
+    showModal = false;
 }
 
 onMounted(() => {
