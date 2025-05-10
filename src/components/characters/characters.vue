@@ -12,15 +12,9 @@
         </div>
         <div class="characters">
             <CharacterCard
-                v-for="aerocat in filteredAerocats"
-                :key="aerocat.name"
-                :cat="aerocat"
-                @cat-selected="onCatClicked">
-            </CharacterCard>
-            <CharacterCard
-                v-for="landcat in landcats"
-                :key="landcat.name"
-                :cat="landcat"
+                v-for="cat in filteredCats"
+                :key="cat.name"
+                :cat="cat"
                 @cat-selected="onCatClicked">
             </CharacterCard>
         </div>
@@ -32,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, watch } from 'vue';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
@@ -40,22 +35,28 @@ import CatModal from './components/character-modal/character-modal.vue';
 import { useCatsStore } from '@/store';
 import { storeToRefs } from 'pinia';
 import { Cat } from '@/models/cat.model';
+import { CatFilter } from '@/models/cat-filter.enum';
+import { useRoute } from 'vue-router';
 
 let value = $ref<string>('');
 let showModal = $ref(false);
 let selectedCat = $ref<Cat>(null);
+let currentFilter = $ref<CatFilter>(CatFilter.Aerocats);
 
 const cats$ = useCatsStore();
-const { aerocats, landcats } = $(storeToRefs(cats$));
+const { filterCats } = $(storeToRefs(cats$));
 
-const filteredAerocats = $computed(() => {
+const route = useRoute();
+const cats = $computed(() => filterCats(currentFilter));
+
+const filteredCats = $computed(() => {
     if (!value) {
-        return aerocats;
+        return cats;
     }
 
     const searchTerm = value.toLowerCase().trim();
 
-    return aerocats.filter((aerocat) => 
+    return cats.filter((aerocat) => 
         aerocat.name.toLowerCase().includes(searchTerm) ||
         aerocat.model.toLowerCase().includes(searchTerm) || 
         aerocat.creator.toLowerCase().includes(searchTerm)
@@ -66,4 +67,12 @@ function onCatClicked(cat: Cat) {
     selectedCat = cat;
     showModal = true;
 }
+
+onMounted(() => {
+    currentFilter = +route.query.t as CatFilter;
+});
+
+watch(() => route.query, () => {
+    currentFilter = +route.query.t as CatFilter;
+});
 </script>

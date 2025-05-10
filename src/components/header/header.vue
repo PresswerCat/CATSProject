@@ -53,7 +53,7 @@
       <nav class="nav-links-container" v-else>
         <Menubar :model="menuItems">
           <template #item="{ item, props, hasSubmenu }">
-                <router-link v-if="item.url" v-slot="{ href, navigate }" :to="item.url" custom>
+                <router-link v-if="item.to" v-slot="{ href, navigate }" :to="item.to">
                     <a :href="href" v-bind="props.action" @click="navigate">
                         <span>{{ item.label }}</span>
                     </a>
@@ -78,6 +78,7 @@ import Menubar from 'primevue/menubar';
 import { MenuItem } from 'primevue/menuitem';
 import { useCatsStore } from '@/store';
 import { storeToRefs } from 'pinia';
+import { CatFilter } from '@/models/cat-filter.enum';
 
 const cat$ = useCatsStore();
 const { isMobile } = $(storeToRefs(cat$));
@@ -85,32 +86,32 @@ const { isMobile } = $(storeToRefs(cat$));
 const menuItems = $ref<MenuItem[]>([
   {
     label: 'About',
-    url: RouteNames.About
+    to: { name: RouteNames.About }
   },
   {
     label: 'Species Sheet',
-    url: RouteNames.SpeciesSheet
+    to: { name: RouteNames.SpeciesSheet }
   },
   {
     label: 'Asset',
-    url: RouteNames.Assets
+    to: { name: RouteNames.Assets }
   },
   {
     label: 'Archive',
-    url: RouteNames.Archive
+    to: { name: RouteNames.Archive }
   },
   {
     label: 'Characters',
-    url: RouteNames.Characters
-    // items: [
-    //   {
-    //     label: 'Aerocats',
-      
-    //   },
-    //   {
-    //     label: 'Landcats'
-    //   }
-    // ]
+    items: [
+      {
+        label: 'Aerocats',
+        to: { name: RouteNames.Characters, query: { t: CatFilter.Aerocats } },
+      },
+      {
+        label: 'Landcats',
+        to: { name: RouteNames.Characters, query: { t: CatFilter.Landcats } },
+      }
+    ]
   }
 ]);
 

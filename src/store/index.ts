@@ -5,6 +5,8 @@ import aerocatJson from "@assets/aerocats.json";
 import landcatJson from "@assets/landcats.json";
 import { GroupedAssets } from "@/models/grouped-assets.model";
 import { CatType } from "@/models/cat-type.enum";
+import { CatFilter } from "@/models/cat-filter.enum";
+import { Cat } from "@/models/cat.model";
 
 interface ModuleImportInterface {
   default: Object;
@@ -15,10 +17,22 @@ export const useCatsStore = defineStore("cats", {
     creators: null,
     aerocats: null,
     landcats: null,
+    cats: null,
   }),
   getters: {
     isMobile: () => {
         return window.innerWidth <= 600;
+    },
+    filterCats(state: CatsState) {
+      const { aerocats, landcats } = state;
+      return (filter: CatFilter): Cat[] => {
+        switch (filter) {
+          case CatFilter.Aerocats:
+            return aerocats;
+          case CatFilter.Landcats:
+            return landcats;
+        }
+      }
     }
   },
   actions: {
@@ -44,6 +58,8 @@ export const useCatsStore = defineStore("cats", {
         l.galleryImagePaths = groupedLandcatAssetUrls[formattedName]?.galleryImagePaths;
         l.referenceSheetsPath = groupedLandcatAssetUrls[formattedName]?.referenceSheetImagePaths;
       });
+
+      this.cats = [...this.aerocats, ...this.landcats];
     },
     groupAssetUrls(globRecord: Record<string, ModuleImportInterface>): Record<string, GroupedAssets> {
       const initialGroupedUrls: Record<string, string[]> = {};
