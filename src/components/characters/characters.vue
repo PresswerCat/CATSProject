@@ -6,7 +6,7 @@
             <span class="characters-header-title">Hanger</span>
             <IconField>
                 <InputIcon class="pi pi-search" />
-                <InputText type="text" v-model="value" placeholder="Search" />
+                <InputText type="text" v-model="searchTerm" placeholder="Search" />
             </IconField>
             
         </div>
@@ -38,7 +38,7 @@ import { Cat } from '@/models/cat.model';
 import { CatFilter } from '@/models/cat-filter.enum';
 import { useRoute } from 'vue-router';
 
-let value = $ref<string>('');
+let searchTerm = $ref<string>('');
 let showModal = $ref(false);
 let selectedCat = $ref<Cat>(null);
 let currentFilter = $ref<CatFilter>(CatFilter.Aerocats);
@@ -50,16 +50,16 @@ const route = useRoute();
 const cats = $computed(() => filterCats(currentFilter));
 
 const filteredCats = $computed(() => {
-    if (!value) {
+    if (!searchTerm) {
         return cats;
     }
 
-    const searchTerm = value.toLowerCase().trim();
+    const formattedSearchTerm = searchTerm.toLowerCase().trim();
 
     return cats.filter((aerocat) => 
-        aerocat.name.toLowerCase().includes(searchTerm) ||
-        aerocat.model.toLowerCase().includes(searchTerm) || 
-        aerocat.creator.toLowerCase().includes(searchTerm)
+        aerocat.name.toLowerCase().includes(formattedSearchTerm) ||
+        aerocat.model.toLowerCase().includes(formattedSearchTerm) || 
+        aerocat.creator.toLowerCase().includes(formattedSearchTerm)
     );
 });
 
@@ -74,5 +74,6 @@ onMounted(() => {
 
 watch(() => route.query, () => {
     currentFilter = +route.query.t as CatFilter;
+    searchTerm = '';
 });
 </script>
