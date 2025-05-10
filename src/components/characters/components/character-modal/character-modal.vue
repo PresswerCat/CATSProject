@@ -41,15 +41,13 @@ const { cat } = defineProps<{
   cat?: Cat;
 }>();
 
-const emit = defineEmits<{
-  (e: 'change', visible: boolean): void;
-}>();
+const emit = defineEmits(['close']);
 
 let visible = $ref(true);
 let images = $ref([]);
 
 watch(() => visible, () => {
-  emit('change', false);
+  emit('close');
 });
 
 onMounted(async () => {

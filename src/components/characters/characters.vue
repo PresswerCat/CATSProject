@@ -22,7 +22,7 @@
     <CatModal
         v-if="showModal"
         :cat="selectedCat"
-        @change="onModalClosed">
+        @close="onModalClosed">
     </CatModal>
 </template>
 
