@@ -16,8 +16,10 @@
             font-size: pxToRem(24);
         }
 
-        :deep(.p-inputtext:enabled:focus) {
-            border-color: $aerocat-blue;
+        .p-iconfield {
+            .p-inputtext:enabled:focus {
+                border-color: $aerocat-blue;
+            }
         }
 
         @media screen and (max-width: $breakpoint-xs) {

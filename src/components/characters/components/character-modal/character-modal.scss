@@ -2,6 +2,16 @@
 @use "@assets/variables.scss" as *;
 
 .character-modal-container {
+  &.p-dialog {
+    @media screen and (max-width: $breakpoint-xs) {
+      width: 100%;
+      border-radius: 0;
+      margin: 0;
+      border-top-left-radius: pxToRem(12);
+      border-top-right-radius: pxToRem(12);
+    }
+  }
+  
   .modal-content {
     .cat-content {
       display: flex;
@@ -14,10 +24,6 @@
 
       .cat-name {
         font-size: pxToRem(16);
-      }
-
-      .additional-info {
-        
       }
     }
   }

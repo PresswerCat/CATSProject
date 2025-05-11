@@ -8,7 +8,7 @@
     dismissableMask
     modal
     closeOnEscape
-    :style="{ width: '75vw' }">
+    :position="position">
     <template #header>
       <span class="creator-name"> {{ cat?.creator }} </span>
     </template>
@@ -36,6 +36,8 @@ import { onMounted, watch } from "vue";
 import { Cat } from "@models/cat.model";
 import Dialog from "primevue/dialog";
 import GalleryCarousel from "../gallery-carousel/gallery-carousel.vue";
+import { useCatsStore } from "@/store";
+import { storeToRefs } from "pinia";
 
 const { cat } = defineProps<{
   cat?: Cat;
@@ -43,8 +45,12 @@ const { cat } = defineProps<{
 
 const emit = defineEmits(['close']);
 
+const cats$ = useCatsStore();
+const { isMobile } = $(storeToRefs(cats$));
+
 let visible = $ref(true);
 let images = $ref([]);
+let position = $computed(() => isMobile ? "bottom": null);
 
 watch(() => visible, () => {
   emit('close');

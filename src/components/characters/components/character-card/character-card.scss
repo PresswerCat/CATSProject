@@ -21,7 +21,7 @@
         }
     }
 
-    :deep(.p-card-body) {
+    &.p-card-body {
         height: 100%;
 
         .p-card-content {
