@@ -2,7 +2,11 @@
 
 <template>
   <Header></Header>
-  <RouterView />
+  <router-view v-slot="{ Component }">
+    <transition name="fade" appear>
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script setup lang="ts">

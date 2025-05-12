@@ -12,38 +12,48 @@
       <div
         v-if="isMobile"
         class="header-drawer-container">
-        <Drawer v-model:visible="visible" header="Drawer" position="full">
-          <template #header>
-            <router-link to="/aerocats/">
-                <img class="logo-img" :src="AerocatLogo" />
-                <span>AEROCATS</span>
-            </router-link>
-          </template>
+        <Drawer
+          v-model:visible="visible"
+          header="CATS"
+          position="full"
+          class="nav-drawer">
           <ul class="nav-links">
-            <li>
-              <router-link :to="{ name: AerocatRouteNames.AboutSpecies }">
+            <li @click="onDrawerItemClicked">
+              <router-link :to="{ name: RouteNames.About }">
                 About
               </router-link>
             </li>
-            <li>
-              <router-link :to="{ name: AerocatRouteNames.SpeciesSheet }">
+            <li @click="onDrawerItemClicked">
+              <router-link :to="{ name: RouteNames.SpeciesSheet }">
                 Species Sheet
               </router-link>
             </li>
-            <li>
-              <router-link :to="{ name: AerocatRouteNames.Assets }">
+            <li @click="onDrawerItemClicked">
+              <router-link :to="{ name: RouteNames.Assets }">
                 Assets
               </router-link>
             </li>
-            <li>
-              <router-link :to="{ name: AerocatRouteNames.Archive }">
+            <li @click="onDrawerItemClicked">
+              <router-link :to="{ name: RouteNames.Archive }">
                 Archive
               </router-link>
             </li>
-            <li>
-              <router-link :to="{ name: AerocatRouteNames.Characters }">
-                Characters
-              </router-link>
+            <li @click="onDrawerItemClicked">
+              <Button @click.stop.prevent="toggleMobileMenu">
+                <span>Characters</span>
+                <i
+                  class="menu-toggle-icon pi"
+                  :class="[ mobileMenuExpanded ? 'pi-angle-up' : 'pi-angle-down' ]"></i>
+              </Button>
+              <Menu
+                v-if="mobileMenuExpanded"
+                :model="mobileCharacterMenuItems">
+                <template #item="{ item }">
+                  <router-link :to="item.to">
+                    <span> {{ item.label }}</span>
+                  </router-link>
+                </template>
+              </Menu>
             </li>
           </ul>
         </Drawer>
@@ -75,6 +85,7 @@ import { RouteNames } from '../../app.routes';
 import Drawer from 'primevue/drawer';
 import Button from 'primevue/button';
 import Menubar from 'primevue/menubar';
+import Menu from 'primevue/menu';
 import { MenuItem } from 'primevue/menuitem';
 import { useCatsStore } from '@/store';
 import { storeToRefs } from 'pinia';
@@ -115,8 +126,29 @@ const menuItems = $ref<MenuItem[]>([
   }
 ]);
 
+const mobileCharacterMenuItems = $ref<MenuItem[]>([
+    {
+      label: 'Aerocats',
+      to: { name: RouteNames.Characters, query: { t: CatFilter.Aerocats } },
+    },
+    {
+      label: 'Landcats',
+      to: { name: RouteNames.Characters, query: { t: CatFilter.Landcats } },
+    }
+]);
+
 let visible = $ref(false);
+let mobileMenuExpanded = $ref(false);
+
 function onDrawerClick() {
   visible = true;
+}
+
+function onDrawerItemClicked() {
+  visible = false;
+}
+
+function toggleMobileMenu() {
+  mobileMenuExpanded = !mobileMenuExpanded;
 }
 </script>

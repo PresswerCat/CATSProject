@@ -7,6 +7,13 @@
                 "bluesky": "https://bsky.app/profile/handle"
             },
             "profileImage": "/assets/images/creators/presto.png"
+        },
+        {
+            "name": "NiceHatFox",
+            "socials": {
+                "twitter": "https://x.com/Nicehatfox"
+            },
+            "profileImage": "/assets/images/creators/nicehatfox.png"
         }
     ]
 }

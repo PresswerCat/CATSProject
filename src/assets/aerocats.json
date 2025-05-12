@@ -10,6 +10,11 @@
             "creator": "Presto",
             "name": "Coo the Cougar",
             "model": "F9F-7"
+        },
+        {
+            "creator": "NiceHatFox",
+            "name": "Flit the Nighthawk",
+            "model": "F-117"
         }
     ]
 }

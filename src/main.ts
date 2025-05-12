@@ -15,8 +15,10 @@ const router = createRouter({
 
 const pinia = createPinia();
 
-createApp(App)
-  .use(router)
+const app = createApp(App).use(router);
+await router.isReady();
+
+app
   .use(pinia)
   .use(PrimeVue, {
     // Default theme configuration

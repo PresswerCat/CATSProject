@@ -11,12 +11,14 @@
             
         </div>
         <div class="characters">
-            <CharacterCard
-                v-for="cat in filteredCats"
-                :key="cat.name"
-                :cat="cat"
-                @cat-selected="onCatClicked">
-            </CharacterCard>
+            <TransitionGroup name="cards">
+                <CharacterCard
+                    v-for="cat in filteredCats"
+                    :key="cat.name"
+                    :cat="cat"
+                    @cat-selected="onCatClicked">
+                </CharacterCard>
+            </TransitionGroup>
         </div>
     </div>
     <CatModal

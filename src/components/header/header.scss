@@ -11,7 +11,7 @@
     @media screen and (max-width: $breakpoint-xs) {
       display: flex;
       justify-content: space-between;
-      padding: 0 pxToRem(16);
+      padding: 0 pxToRem(20);
     }
 
     a {
@@ -37,27 +37,35 @@
       }
     }
 
-    ul.nav-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: pxToRem(16);
-
-      li {
-        list-style: none;
-        padding-bottom: pxToRem(2);
-        border-bottom: pxToRem(2) solid transparent;
-        transition: border-bottom 0.3s ease;
+    .header-drawer-container {
+      .p-button {
+        border: none;
+        background: transparent;
+        color: var(--p-button-text-secondary-color);
       }
 
-      li:hover {
-        border-bottom-color: $aerocat-blue;
-      }
-
-      a {
-        &.router-link-exact-active {
-          color: $aerocat-blue;
+      .nav-drawer {
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          gap: pxToRem(16);
+        
+          li {
+            a {
+              text-decoration: none;
+              color: white;
+            }
+          }
+        }
+        
+        .p-button {
+          border: none;
+          background: transparent;
+          margin: 0;
+          padding: 0;
         }
       }
     }

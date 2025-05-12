@@ -3,13 +3,19 @@
 
 .character-modal-container {
   &.p-dialog {
+    width: 75vw;
+    
     @media screen and (max-width: $breakpoint-xs) {
       width: 100%;
       border-radius: 0;
-      margin: 0;
+      margin: 0 !important;
       border-top-left-radius: pxToRem(12);
       border-top-right-radius: pxToRem(12);
     }
+  }
+
+  .cat-name {
+    font-size: pxToRem(20);
   }
   
   .modal-content {

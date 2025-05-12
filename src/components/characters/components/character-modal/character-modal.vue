@@ -1,4 +1,4 @@
-<style lang="scss" scoped src="./character-modal.scss"></style>
+<style lang="scss" src="./character-modal.scss"></style>
 
 <template>
   <Dialog
@@ -10,7 +10,7 @@
     closeOnEscape
     :position="position">
     <template #header>
-      <span class="creator-name"> {{ cat?.creator }} </span>
+      <span class="cat-name"> {{ cat?.name }} </span>
     </template>
     <div class="modal-content">
       <div class="cat-content">
@@ -19,9 +19,6 @@
         </GalleryCarousel>
         <div class="cat-model">
           {{ cat?.model }}
-        </div>
-        <div class="cat-name">
-          {{ cat?.name }}
         </div>
         <span v-if="cat?.description" class="additional-info">
           {{ cat?.description }}
