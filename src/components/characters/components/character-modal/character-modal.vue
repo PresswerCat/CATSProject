@@ -49,11 +49,22 @@ let visible = $ref(true);
 let images = $ref([]);
 let position = $computed(() => isMobile ? "bottom": null);
 
+function toggleBodyLock() {
+  if (visible) {
+    document.body.classList?.add('modal-open');
+  } else {
+    document.body.classList?.remove('modal-open');
+  }
+}
+
 watch(() => visible, () => {
+  toggleBodyLock();
   emit('close');
 });
 
+
 onMounted(async () => {
+  toggleBodyLock();
   let allImages = [];
   if (cat?.referenceSheetsPath?.length) {
     allImages.push(...cat.referenceSheetsPath);

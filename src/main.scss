@@ -7,4 +7,11 @@ body {
     font-family: 'ZTGatha';
     max-width: 1024px;
     margin: auto;
+
+    &.modal-open {
+        position: fixed;
+        width: 100%;
+        overflow: hidden;
+        top: 0;
+    }
 }

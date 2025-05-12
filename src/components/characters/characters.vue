@@ -3,7 +3,7 @@
 <template>
     <div class="characters-container">
         <div class="characters-header">
-            <span class="characters-header-title">Hanger</span>
+            <span class="characters-header-title">{{ titleText }}</span>
             <IconField>
                 <InputIcon class="pi pi-search" />
                 <InputText type="text" v-model="searchTerm" placeholder="Search" />
@@ -51,6 +51,15 @@ const { filterCats } = $(storeToRefs(cats$));
 
 const route = useRoute();
 const cats = $computed(() => filterCats(currentFilter));
+
+const titleText = $computed(() => {
+    switch (currentFilter) {
+        case CatFilter.Aerocats: 
+            return "Hanger";
+        case CatFilter.Landcats:
+            return "Garage";
+    }
+})
 
 const filteredCats = $computed(() => {
     if (!searchTerm) {
