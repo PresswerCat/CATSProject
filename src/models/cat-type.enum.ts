@@ -1,6 +1,6 @@
 export enum CatType {
-    Unknown = 'unknown',
-    Aerocat = 'aerocat',
-    Landcat = 'landcat',
+    Unknown = 'Unknown',
+    Aerocat = 'Aerocat',
+    Landcat = 'Landcat',
     // more types here
 }
