@@ -1,6 +1,47 @@
 @use "@assets/mixins.scss" as *;
 @use "@assets/variables.scss" as *;
 
+.nav-drawer {
+  .p-drawer-content {
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: pxToRem(16);
+    
+      li {
+        a {
+          text-decoration: none;
+          color: white;
+
+          // &.router-link-active {
+          //   color: $aerocat-blue;
+          // }
+        }
+
+        :deep(.sub-menu) {
+          border: none;
+    
+          .p-menu-list {
+            padding: pxToRem(16);
+            gap: pxToRem(12);
+          }
+        }
+      }
+    }
+
+    .p-button {
+      border: none;
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+  }
+}
+
 .app-header-container {
   .header-container {
     display: flex;
@@ -42,31 +83,6 @@
         border: none;
         background: transparent;
         color: var(--p-button-text-secondary-color);
-      }
-
-      .nav-drawer {
-        .nav-links {
-          display: flex;
-          flex-direction: column;
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          gap: pxToRem(16);
-        
-          li {
-            a {
-              text-decoration: none;
-              color: white;
-            }
-          }
-        }
-        
-        .p-button {
-          border: none;
-          background: transparent;
-          margin: 0;
-          padding: 0;
-        }
       }
     }
 

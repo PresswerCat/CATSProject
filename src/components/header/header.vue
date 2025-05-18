@@ -46,6 +46,7 @@
                   :class="[ mobileMenuExpanded ? 'pi-angle-up' : 'pi-angle-down' ]"></i>
               </Button>
               <Menu
+                class="sub-menu"
                 v-if="mobileMenuExpanded"
                 :model="mobileCharacterMenuItems">
                 <template #item="{ item }">
@@ -146,6 +147,7 @@ function onDrawerClick() {
 
 function onDrawerItemClicked() {
   visible = false;
+  mobileMenuExpanded = false;
 }
 
 function toggleMobileMenu() {

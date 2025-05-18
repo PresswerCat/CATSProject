@@ -1,4 +1,5 @@
 @use "@assets/mixins.scss" as *;
+@use "@assets/variables.scss" as *;
 
 .about-the-species-container {
     display: flex;
@@ -6,6 +7,10 @@
     align-items: center;
     justify-content: center;
     gap: pxToRem(32);
+
+    @media screen and (max-width: $breakpoint-xs) {
+        padding: pxToRem(32);
+    }
     
     .species-creator {
         .creator-card {

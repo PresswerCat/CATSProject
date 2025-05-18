@@ -37,12 +37,12 @@ export const routes: RouteRecordRaw[] = [
     {
         path: RoutePathNames[RouteNames.Assets],
         name: RouteNames.Assets,
-        component: () => import('./components/archive/archive.vue')
+        component: () => import('./components/assets/assets.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.Archive],
         name: RouteNames.Archive,
-        component: () => import('./components/assets/assets.vue')
+        component: () => import('./components/archive/archive.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.Characters],
