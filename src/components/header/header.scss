@@ -90,6 +90,23 @@
       display: flex;
       flex-direction: row;
 
+      :deep(.p-menubar-item) {
+        .p-menubar-item-content:hover {
+          background: transparent;
+        }
+
+        .p-menubar-item-link:hover {
+          .menu-item {
+            border-bottom-color: $aerocat-blue;
+          }
+        }
+      }
+
+      .menu-item {
+        border-bottom: 2px solid transparent;
+        transition: border-bottom 0.3s ease;
+      }
+
       .p-menubar {
         border: none;
         background: none;

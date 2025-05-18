@@ -66,11 +66,11 @@
           <template #item="{ item, props, hasSubmenu }">
                 <router-link v-if="item.to" v-slot="{ href, navigate }" :to="item.to">
                     <a :href="href" v-bind="props.action" @click="navigate">
-                        <span>{{ item.label }}</span>
+                        <span class="menu-item">{{ item.label }}</span>
                     </a>
                 </router-link>
                 <a v-else :href="item.url" :target="item.target" v-bind="props.action">
-                    <span>{{ item.label }}</span>
+                    <span class="menu-item">{{ item.label }}</span>
                     <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down"> </span>
                 </a>
             </template>
