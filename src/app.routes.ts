@@ -22,31 +22,31 @@ export const routes: RouteRecordRaw[] = [
     {
         path: RoutePathNames[RouteNames.Home],
         name: RouteNames.Home,
-        component: () => import('./components/home/home.vue')
+        component: () => import('./modules/home/home.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.About],
         name: RouteNames.About,
-        component: () => import('./components/about/about.vue')
+        component: () => import('./modules/about/about.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.SpeciesSheet],
         name: RouteNames.SpeciesSheet,
-        component: () => import('./components/species-sheet/species-sheet.vue')
+        component: () => import('./modules/species-sheet/species-sheet.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.Assets],
         name: RouteNames.Assets,
-        component: () => import('./components/assets/assets.vue')
+        component: () => import('./modules/assets/assets.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.Archive],
         name: RouteNames.Archive,
-        component: () => import('./components/archive/archive.vue')
+        component: () => import('./modules/archive/archive.vue')
     } as RouteRecordRaw,
     {
         path: RoutePathNames[RouteNames.Characters],
         name: RouteNames.Characters,
-        component: () => import('./components/characters/characters.vue')
+        component: () => import('./modules/characters/characters.vue')
     } as RouteRecordRaw,
 ];

@@ -1,0 +1,70 @@
+@use "@assets/mixins.scss" as *;
+@use "@assets/variables.scss" as *;
+
+:deep(.p-selectbutton) {
+    .p-togglebutton {
+        .p-togglebutton-label {
+            text-transform: capitalize;
+        }
+    }
+}
+
+.species-sheet-container {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: $breakpoint-xs) {
+    margin: pxToRem(32);
+  }
+
+  
+
+  .species-sheet-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: pxToRem(8);
+
+    .embla {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+
+      .embla__viewport {
+        overflow: hidden;
+
+        .embla__container {
+          display: flex;
+
+          .embla__slide {
+            display: flex;
+            flex: 0 0 calc(100% / 3);
+            justify-content: center;
+            align-items: center;
+
+            @media screen and (max-width: $breakpoint-xs) {
+                flex: 0 0 100%;
+            }
+
+            &:not(.is-snapped) {
+                opacity: 0.16;
+
+                .p-image {
+                    height: 50vh;
+
+                    @media screen and (max-width: $breakpoint-xs) {
+                        height: 100%;
+                    }
+                }
+            }
+
+
+            .p-image {
+                height: 75vh;
+            }
+          }
+        }
+      }
+    }
+  }
+}

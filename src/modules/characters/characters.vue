@@ -18,6 +18,10 @@
                     :cat="cat"
                     @cat-selected="onCatClicked">
                 </CharacterCard>
+                <CharacterCard
+                    v-if="!searchTerm"
+                    :cat="placeholderCat">
+                </CharacterCard>
             </TransitionGroup>
         </div>
     </div>
@@ -40,6 +44,8 @@ import { storeToRefs } from 'pinia';
 import { Cat } from '@/models/cat.model';
 import { CatFilter } from '@/models/cat-filter.enum';
 import { useRoute } from 'vue-router';
+import AerocatPlaceholder from '@assets/images/aerocat-placeholder.png';
+import LandcatPlaceholder from '@assets/images/landcat-placeholder.png';
 
 let searchTerm = $ref<string>('');
 let showModal = $ref(false);
@@ -51,6 +57,23 @@ const { filterCats } = $(storeToRefs(cats$));
 
 const route = useRoute();
 const cats = $computed(() => filterCats(currentFilter));
+
+const placeholderCat = $computed(() => {
+    let placholderImage = '';
+    switch (currentFilter) {
+        case CatFilter.Aerocats:
+            placholderImage = AerocatPlaceholder;
+            break;
+        case CatFilter.Landcats:
+            placholderImage =  LandcatPlaceholder;
+            break;
+    }
+
+    return {
+        model: 'Your CAT here!',
+        galleryImagePaths: [placholderImage]
+    } as Cat;
+});
 
 const titleText = $computed(() => {
     switch (currentFilter) {

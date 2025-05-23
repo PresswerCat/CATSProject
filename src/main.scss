@@ -3,10 +3,15 @@
     src: url('/src/assets/fonts/ZTGatha-SemiBold.ttf') format('trueType');
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'ZTGatha';
     max-width: 1024px;
     margin: auto;
+    height: 100%;
 
     &.modal-open {
         width: 100%;

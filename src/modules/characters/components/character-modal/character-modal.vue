@@ -32,7 +32,7 @@
 import { onMounted, watch } from "vue";
 import { Cat } from "@models/cat.model";
 import Dialog from "primevue/dialog";
-import GalleryCarousel from "../gallery-carousel/gallery-carousel.vue";
+import GalleryCarousel from "../../../../components/gallery-carousel/gallery-carousel.vue";
 import { useCatsStore } from "@/store";
 import { storeToRefs } from "pinia";
 
