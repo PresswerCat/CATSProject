@@ -110,5 +110,5 @@ onMounted(() => {
 onUnmounted(() => {
     emblaApi.destroy();
     document.removeEventListener("keyup", setupKeyEvents);
-})
+});
 </script>
