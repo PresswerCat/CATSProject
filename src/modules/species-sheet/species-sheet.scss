@@ -51,10 +51,6 @@
 
                 .p-image {
                     height: 50vh;
-
-                    @media screen and (max-width: $breakpoint-xs) {
-                        height: 100%;
-                    }
                 }
             }
 

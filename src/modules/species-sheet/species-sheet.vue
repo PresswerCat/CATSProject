@@ -119,10 +119,14 @@ function dotClicked(index: number) {
 }
 
 function toggleDotBtnsActive() {
+    if (!dotNodes) {
+        return;
+    }
+
     const previous = emblaApi.previousScrollSnap();
     const selected = emblaApi.selectedScrollSnap();
-    dotNodes[previous].classList.remove('embla__dot--selected');
-    dotNodes[selected].classList.add('embla__dot--selected');
+    dotNodes[previous].classList?.remove('embla__dot--selected');
+    dotNodes[selected].classList?.add('embla__dot--selected');
 }
 
 onMounted(() => {
