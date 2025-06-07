@@ -95,6 +95,21 @@ import { CatFilter } from '@/models/cat-filter.enum';
 const cat$ = useCatsStore();
 const { isMobile } = $(storeToRefs(cat$));
 
+const characterMenuItems = [
+  {
+    label: 'Aerocats',
+    to: { name: RouteNames.Characters, query: { t: CatFilter.Aerocats } },
+  },
+  {
+    label: 'Landcats',
+    to: { name: RouteNames.Characters, query: { t: CatFilter.Landcats } },
+  },
+  {
+    label: 'Protos',
+    to: { name: RouteNames.Characters, query: { t: CatFilter.Protos } },
+  }
+];
+
 const menuItems = $ref<MenuItem[]>([
   {
     label: 'About',
@@ -114,29 +129,11 @@ const menuItems = $ref<MenuItem[]>([
   },
   {
     label: 'Characters',
-    items: [
-      {
-        label: 'Aerocats',
-        to: { name: RouteNames.Characters, query: { t: CatFilter.Aerocats } },
-      },
-      {
-        label: 'Landcats',
-        to: { name: RouteNames.Characters, query: { t: CatFilter.Landcats } },
-      }
-    ]
+    items: characterMenuItems
   }
 ]);
 
-const mobileCharacterMenuItems = $ref<MenuItem[]>([
-    {
-      label: 'Aerocats',
-      to: { name: RouteNames.Characters, query: { t: CatFilter.Aerocats } },
-    },
-    {
-      label: 'Landcats',
-      to: { name: RouteNames.Characters, query: { t: CatFilter.Landcats } },
-    }
-]);
+const mobileCharacterMenuItems = $ref<MenuItem[]>(characterMenuItems);
 
 let visible = $ref(false);
 let mobileMenuExpanded = $ref(false);

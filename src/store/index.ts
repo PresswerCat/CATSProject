@@ -1,24 +1,26 @@
-import { defineStore } from "pinia";
-import { CatsState } from "./state";
-import creatorJson from "@assets/creators.json";
-import aerocatJson from "@assets/aerocats.json";
-import landcatJson from "@assets/landcats.json";
-import { GroupedAssets } from "@/models/grouped-assets.model";
-import { CatType } from "@/models/cat-type.enum";
-import { CatFilter } from "@/models/cat-filter.enum";
-import { Cat } from "@/models/cat.model";
-import { Language } from "@/models/language.enum";
-import { SpeciesSheet } from "@/models/species-sheet.model";
+import { defineStore } from 'pinia';
+import { CatsState } from './state';
+import creatorJson from '@assets/creators.json';
+import aerocatJson from '@assets/aerocats.json';
+import landcatJson from '@assets/landcats.json';
+import protoJson from '@assets/protos.json';
+import { GroupedAssets } from '@/models/grouped-assets.model';
+import { CatType } from '@/models/cat-type.enum';
+import { CatFilter } from '@/models/cat-filter.enum';
+import { Cat } from '@/models/cat.model';
+import { Language } from '@/models/language.enum';
+import { SpeciesSheet } from '@/models/species-sheet.model';
 
 interface ModuleImportInterface {
   default: Object;
 }
 
-export const useCatsStore = defineStore("cats", {
+export const useCatsStore = defineStore('cats', {
   state: (): CatsState => ({
     creators: null,
     aerocats: null,
     landcats: null,
+    protos: null,
     cats: null,
     speciesSheets: {} as Record<Language, SpeciesSheet>,
   }),
@@ -27,13 +29,15 @@ export const useCatsStore = defineStore("cats", {
         return window.innerWidth <= 600;
     },
     filterCats(state: CatsState) {
-      const { aerocats, landcats } = state;
+      const { aerocats, landcats, protos } = state;
       return (filter: CatFilter): Cat[] => {
         switch (filter) {
           case CatFilter.Aerocats:
             return aerocats;
           case CatFilter.Landcats:
             return landcats;
+          case CatFilter.Protos:
+            return protos;
         }
       }
     },
@@ -57,18 +61,20 @@ export const useCatsStore = defineStore("cats", {
       this.creators = creatorJson.creators;
       this.aerocats = aerocatJson.aerocats;
       this.landcats = landcatJson.landcats;
+      this.protos = protoJson.protos;
 
       this.fetchAerocats();
       this.fetchLandcats();
+      this.fetchProtos();
       this.fetchSpeciesSheets();
 
-      this.cats = [...this.aerocats, ...this.landcats];
+      this.cats = [...this.aerocats, ...this.landcats, ...this.protos];
     },
     fetchAerocats(): void {
       const aerocatGlob = import.meta.glob<ModuleImportInterface>('/src/assets/images/aerocats/**/*', { eager: true });
       const groupedAerocatAssetUrls = this.groupAssetUrls(aerocatGlob);
       this.aerocats?.forEach(a => {
-        const formattedName = a.name.toLowerCase().replaceAll(" ", "_");
+        const formattedName = a.name.toLowerCase().replaceAll(' ', '_');
         a.type = CatType.Aerocat;
         a.galleryImagePaths = groupedAerocatAssetUrls[formattedName]?.galleryImagePaths;
         a.referenceSheetsPath = groupedAerocatAssetUrls[formattedName]?.referenceSheetImagePaths;
@@ -78,10 +84,20 @@ export const useCatsStore = defineStore("cats", {
       const landcatGlob = import.meta.glob<ModuleImportInterface>('/src/assets/images/landcats/**/*', { eager: true});
       const groupedLandcatAssetUrls = this.groupAssetUrls(landcatGlob);
       this.landcats?.forEach(l => {
-        const formattedName = l.name.toLowerCase().replaceAll(" ", "_");
+        const formattedName = l.name.toLowerCase().replaceAll(' ', '_');
         l.type = CatType.Landcat;
         l.galleryImagePaths = groupedLandcatAssetUrls[formattedName]?.galleryImagePaths;
         l.referenceSheetsPath = groupedLandcatAssetUrls[formattedName]?.referenceSheetImagePaths;
+      });
+    },
+    fetchProtos(): void {
+      const protoGlob = import.meta.glob<ModuleImportInterface>('/src/assets/images/protos/**/*', { eager: true });
+      const groupedProtoAssetUrls = this.groupAssetUrls(protoGlob);
+      this.protos?.forEach(p => {
+        const formattedName = p.name.toLowerCase().replaceAll(' ', '_');
+        p.type = CatType.Proto;
+        p.galleryImagePaths = groupedProtoAssetUrls[formattedName]?.galleryImagePaths;
+        p.referenceSheetsPath = groupedProtoAssetUrls[formattedName]?.referenceSheetImagePaths;
       });
     },
     fetchSpeciesSheets(): void {

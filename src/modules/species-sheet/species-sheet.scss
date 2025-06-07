@@ -2,28 +2,32 @@
 @use "@assets/variables.scss" as *;
 
 :deep(.p-selectbutton) {
-    .p-togglebutton {
-        .p-togglebutton-label {
-            text-transform: capitalize;
-        }
+  .p-togglebutton {
+    .p-togglebutton-label {
+      text-transform: capitalize;
     }
+  }
 }
 
 .species-sheet-container {
   display: flex;
   flex-direction: column;
+  gap: pxToRem(8);
 
   @media screen and (max-width: $breakpoint-xs) {
-    margin: pxToRem(32);
+    margin: 0 pxToRem(32);
+    margin-bottom: pxToRem(32);
   }
-
-  
 
   .species-sheet-content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: pxToRem(8);
+
+    @media screen and (max-width: $breakpoint-xs) {
+      align-items: flex-start;
+    }
 
     .embla {
       position: relative;
@@ -38,25 +42,29 @@
 
           .embla__slide {
             display: flex;
-            flex: 0 0 calc(100% / 3);
+            flex: 0 0 34%;
             justify-content: center;
             align-items: center;
+            transition: opacity 0.2s ease-in-out;
 
             @media screen and (max-width: $breakpoint-xs) {
-                flex: 0 0 100%;
+              flex: 0 0 100%;
             }
 
             &:not(.is-snapped) {
-                opacity: 0.16;
+              opacity: 0.16;
 
-                .p-image {
-                    height: 50vh;
+              .p-image {
+                height: 50vh;
+
+                @media screen and (max-width: $breakpoint-xs) {
+                  height: 75vh;
                 }
+              }
             }
 
-
             .p-image {
-                height: 75vh;
+              height: 75vh;
             }
           }
         }
@@ -64,56 +72,56 @@
     }
 
     .embla__controls {
-    width: 100%;
-
-    .embla__buttons {
-      position: absolute;
-      top: 43%;
       width: 100%;
 
-      .embla__button {
-        background: white;
-        opacity: 0.7;
-        border: none;
-        border-radius: 100%;
-        cursor: pointer;
-        width: pxToRem(40);
-        height: pxToRem(40);
+      .embla__buttons {
         position: absolute;
+        top: 43%;
+        width: 100%;
 
-        i {
-          color: black;
-        }
+        .embla__button {
+          background: white;
+          opacity: 0.7;
+          border: none;
+          border-radius: 100%;
+          cursor: pointer;
+          width: pxToRem(40);
+          height: pxToRem(40);
+          position: absolute;
 
-        &.embla__button--next {
-          right: pxToRem(4);
-        }
+          i {
+            color: black;
+          }
 
-        &.embla__button--prev {
-          left: pxToRem(4);
+          &.embla__button--next {
+            right: pxToRem(4);
+          }
+
+          &.embla__button--prev {
+            left: pxToRem(4);
+          }
         }
       }
-    }
 
-    .embla__dots {
-      display: flex;
-      justify-content: center;
-      column-gap: pxToRem(8);
+      .embla__dots {
+        display: flex;
+        justify-content: center;
+        column-gap: pxToRem(8);
 
-      .embla__dot {
-        width: pxToRem(8);
-        height: pxToRem(8);
-        border-radius: 50%;
-        border: none;
-        margin-top: pxToRem(8);
-        padding: 0;
-        cursor: pointer;
+        .embla__dot {
+          width: pxToRem(8);
+          height: pxToRem(8);
+          border-radius: 50%;
+          border: none;
+          margin-top: pxToRem(8);
+          padding: 0;
+          cursor: pointer;
 
-        &.embla__dot--selected {
+          &.embla__dot--selected {
             background-color: white;
+          }
         }
       }
     }
-  }
   }
 }

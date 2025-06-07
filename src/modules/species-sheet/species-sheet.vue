@@ -74,10 +74,11 @@ const cat$ = useCatsStore();
 const { speciesSheetByCatAndLanguage } = $(storeToRefs(cat$));
 
 const catType = $ref(null);
+let prevCatType = $ref(null);
 const language = $ref(Language.English);
 let images = $ref([]);
 
-const catOptions = $ref([CatType.Aerocat, CatType.Landcat]);
+const catOptions = $ref([CatType.Aerocat, CatType.Landcat, CatType.Proto]);
 const languageOptions = $ref([Language.English, Language.Korean, Language.Japanese]);
 
 const [emblaRef, emblaApi] = $(emblaCarouselVue({}, [ClassNames()]));
@@ -146,6 +147,10 @@ onUnmounted(() => {
 });
 
 function onLanguageSelected(): void {
+    if (catType !== prevCatType) {
+        emblaApi.scrollTo(0);
+    }
+    prevCatType = catType;
     images = speciesSheetByCatAndLanguage(catType, language);
 }
 </script>
