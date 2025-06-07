@@ -3,8 +3,7 @@
         {
             "creator": "Presto",
             "name": "Patriot Panther",
-            "model": "F9F-5",
-            "description": "Description text goes here. I am very creative and this should overflow now which is good for testing."
+            "model": "F9F-5"
         },
         {
             "creator": "Presto",
