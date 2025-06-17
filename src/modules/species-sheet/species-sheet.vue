@@ -20,8 +20,9 @@
                         <div
                             v-for="image in images"
                             :key="image"
-                            class="embla__slide">
-                            <Image 
+                            class="embla__slide"
+                            :class="catType">
+                            <Image
                                 :src="image" 
                                 preview
                                 alt="species sheet image"/>

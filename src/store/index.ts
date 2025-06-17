@@ -110,6 +110,8 @@ export const useCatsStore = defineStore('cats', {
             this.speciesSheets[CatType.Aerocat] = value;
           case CatType.Landcat:
             this.speciesSheets[CatType.Landcat] = value;
+          case CatType.Proto:
+            this.speciesSheets[CatType.Proto] = value;
         }
       });
     },

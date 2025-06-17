@@ -47,6 +47,10 @@
             align-items: center;
             transition: opacity 0.2s ease-in-out;
 
+            &.proto {
+              flex: 0 0 100%;
+            }
+
             @media screen and (max-width: $breakpoint-xs) {
               flex: 0 0 100%;
             }
@@ -65,6 +69,11 @@
 
             .p-image {
               height: 75vh;
+
+              :deep(img) {
+                width: 100%;
+                object-fit: contain;
+              }
             }
           }
         }
