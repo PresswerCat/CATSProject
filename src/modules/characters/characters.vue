@@ -58,21 +58,28 @@ const { filterCats } = $(storeToRefs(cats$));
 const route = useRoute();
 const cats = $computed(() => filterCats(currentFilter));
 
-const placeholderCat = $computed(() => {
+const placeholderCat = $computed<Cat>(() => {
     let placholderImage = '';
+    let catType = 'CAT';
     switch (currentFilter) {
         case CatFilter.Aerocats:
             placholderImage = AerocatPlaceholder;
+            catType = 'Aerocat';
             break;
         case CatFilter.Landcats:
             placholderImage =  LandcatPlaceholder;
+            catType = 'Landcat'
+            break;
+        case CatFilter.Protos:
+            placholderImage = AerocatPlaceholder;
+            catType = 'Proto';
             break;
     }
 
     return {
-        model: 'Your CAT here!',
+        model: `Your ${catType} here!`,
         galleryImagePaths: [placholderImage]
-    } as Cat;
+    };
 });
 
 const titleText = $computed(() => {
