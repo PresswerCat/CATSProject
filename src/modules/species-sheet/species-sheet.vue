@@ -9,7 +9,7 @@
             @change="onLanguageSelected"/>
         <div class="species-sheet-content-container">
             <SelectButton
-                v-if="catType"
+                v-if="hasLanguageSupport(catType)"
                 v-model="language"
                 :options="languageOptions"
                 :allow-empty="false"
@@ -87,6 +87,10 @@ const dotNodes = $(useTemplateRef('dotNodes'));
 
 let canScrollPrev = $ref(false);
 let canScrollNext = $ref(false);
+
+function hasLanguageSupport(catType: CatType) {
+    return catType === CatType.Aerocat || catType === CatType.Landcat;
+}
 
 function scrollNext() {
   emblaApi?.scrollNext();
