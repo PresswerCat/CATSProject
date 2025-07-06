@@ -120,6 +120,10 @@ const menuItems = $ref<MenuItem[]>([
     to: { name: RouteNames.SpeciesSheet }
   },
   {
+    label: 'Lore',
+    to: { name: RouteNames.Lore }
+  },
+  {
     label: 'Asset',
     to: { name: RouteNames.Assets }
   },

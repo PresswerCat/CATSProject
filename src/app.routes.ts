@@ -2,11 +2,12 @@ import { RouteRecordRaw } from "vue-router";
 
 export enum RouteNames {
     Home = 'home',
-    About = "about",
-    SpeciesSheet = "species-sheet",
-    Assets = "assets",
-    Archive = "archive",
-    Characters = "characters",
+    About = 'about',
+    SpeciesSheet = 'species-sheet',
+    Assets = 'assets',
+    Archive = 'archive',
+    Characters = 'characters',
+    Lore = 'lore'
 }
 
 const RoutePathNames = {
@@ -16,6 +17,7 @@ const RoutePathNames = {
     [RouteNames.Assets]: '/assets',
     [RouteNames.Archive]: '/archive',
     [RouteNames.Characters]: '/characters',
+    [RouteNames.Lore]: '/lore'
 }
 
 export const routes: RouteRecordRaw[] = [
@@ -48,5 +50,10 @@ export const routes: RouteRecordRaw[] = [
         path: RoutePathNames[RouteNames.Characters],
         name: RouteNames.Characters,
         component: () => import('./modules/characters/characters.vue')
+    } as RouteRecordRaw,
+    {
+        path: RoutePathNames[RouteNames.Lore],
+        name: RouteNames.Lore,
+        component: () => import('./modules/lore/lore.vue')
     } as RouteRecordRaw,
 ];
