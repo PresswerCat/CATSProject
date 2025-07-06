@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, useTemplateRef } from 'vue';
+import { onMounted, onUnmounted, useTemplateRef, onUpdated } from 'vue';
 import SelectButton from 'primevue/selectbutton';
 import { Language } from '@models/language.enum';
 import { CatType } from '@/models/cat-type.enum';
@@ -142,7 +142,9 @@ onMounted(() => {
     emblaApi
         .on('select', updateButtonVisibility)
         .on('init', toggleDotBtnsActive)
+        .on('init', updateButtonVisibility)
         .on('reInit', toggleDotBtnsActive)
+        .on('reInit', updateButtonVisibility)
         .on('select', toggleDotBtnsActive);
 });
 
