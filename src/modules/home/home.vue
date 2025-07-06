@@ -5,7 +5,7 @@
         <div class="homepage-header">
             <h1>Welcome!</h1>
         </div>
-        <img :src="Banner" alt="aerocats banner" class="homepage-banner"/>
+        <img :src="Banner" alt="home banner" class="homepage-banner"/>
         <div class="contacts">
             <span>Contact us on discord for updates!</span>
             <div class="discord-contacts">
@@ -23,5 +23,5 @@
 </template>
 
 <script setup lang="ts">
-import Banner from '@assets/images/aerocats_banner.jpg';
+import Banner from '@assets/images/home_banner.png';
 </script>
