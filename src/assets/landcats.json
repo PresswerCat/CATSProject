@@ -4,6 +4,11 @@
             "creator": "Presto",
             "name": "Shell the Sheridan",
             "model": "M551 Sheridan"
+        },
+        {
+            "creator": "Toastology",
+            "name": "Tetril",
+            "model": "EOD Bomb Disposal Unit"
         }
     ]
 }
