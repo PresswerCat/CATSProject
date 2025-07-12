@@ -12,14 +12,27 @@
         padding: pxToRem(32);
     }
     
-    .species-creator {
+    .species-creators {
+        display: flex;
+        flex-direction: row;
+        gap: pxToRem(16);
+
         .creator-card {
             width: pxToRem(240);
             overflow: hidden;
 
-            .presto-img {
+            .creator-img {
                 width: 100%;
             }
         }
+    }
+
+    .section-title {
+        font-size: pxToRem(32);
+        font-weight: 500;
+    }
+
+    .warning-text {
+        color: var(--p-red-500);
     }
 }

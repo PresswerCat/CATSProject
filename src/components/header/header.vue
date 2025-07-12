@@ -29,16 +29,6 @@
               </router-link>
             </li>
             <li @click="onDrawerItemClicked">
-              <router-link :to="{ name: RouteNames.Assets }">
-                Assets
-              </router-link>
-            </li>
-            <li @click="onDrawerItemClicked">
-              <router-link :to="{ name: RouteNames.Archive }">
-                Archive
-              </router-link>
-            </li>
-            <li @click="onDrawerItemClicked">
               <Button @click.stop.prevent="toggleMobileMenu">
                 <span>Characters</span>
                 <i
@@ -122,14 +112,6 @@ const menuItems = $ref<MenuItem[]>([
   {
     label: 'Lore',
     to: { name: RouteNames.Lore }
-  },
-  {
-    label: 'Asset',
-    to: { name: RouteNames.Assets }
-  },
-  {
-    label: 'Archive',
-    to: { name: RouteNames.Archive }
   },
   {
     label: 'Characters',
